@@ -1,0 +1,165 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=none,oneside]{ctexart}
+
+\newif\ifprofessional
+\newif\ifreview
+
+% ======================== 待编辑信息 ========================
+\professionalfalse % 默认\professionalfalse为学术硕士；改为\professionaltrue切换为专业硕士
+\reviewfalse %默认\reviewfalse为开题报告；改为\professionaltrue切换为文献综述
+
+% 题目，不超过25个汉字
+\newcommand{\ReportTitle}{控制系统………………\\……………分析}
+
+\newcommand{\Classification}{×××××}		%中图分类号
+\newcommand{\StudentNumber}{SY2503×××}	%学号
+\newcommand{\AuthorName}{高××}			%学生姓名
+\newcommand{\MajorName}{控制科学与工程}	%专业名称
+\newcommand{\SupervisorName}{张××}		%导师姓名
+\newcommand{\SupervisorTitle}{教授}		%导师职称
+\newcommand{\SecondSupervisor}{李××} 	%第二导师姓名，可留空
+\newcommand{\SecondSupervisorTitle}{副教授}%第二导师职称
+
+
+% ======================================================================
+\usepackage[left=31.8mm,right=25.9mm,top=25.4mm,bottom=25.4mm,headheight=19bp,headsep=3.7mm,footskip=8mm]{geometry}
+\usepackage{iftex}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{etoolbox}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{amsmath}
+\usepackage{newtxmath}
+\usepackage{chngcntr}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage[numbers,square,super,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+
+% 字体选择
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}\PackageWarning{main}{Times New Roman unavailable; using TeX Gyre Termes}}
+\IfFontExistsTF{SimSun}{%
+  \setCJKmainfont[AutoFakeBold=2]{SimSun}%
+  \setCJKfamilyfont{zhsong}[AutoFakeBold=2]{SimSun}%
+}{%
+  \setCJKmainfont[BoldFont=FandolSong-Bold]{FandolSong-Regular}%
+  \setCJKfamilyfont{zhsong}[BoldFont=FandolSong-Bold]{FandolSong-Regular}%
+  \PackageWarning{main}{SimSun unavailable; using FandolSong-Regular with FandolSong-Bold}%
+}
+\IfFontExistsTF{SimHei}{%
+  \setCJKsansfont{SimHei}%
+  \setCJKfamilyfont{zhhei}{SimHei}%
+}{%
+  \setCJKsansfont[BoldFont=FandolHei-Bold]{FandolHei-Regular}%
+  \setCJKfamilyfont{zhhei}[BoldFont=FandolHei-Bold]{FandolHei-Regular}%
+  \PackageWarning{main}{SimHei unavailable; using FandolHei-Regular with FandolHei-Bold}%
+}
+\IfFontExistsTF{STXingkai}{\setCJKfamilyfont{kai}{STXingkai}}{%
+  \IfFontExistsTF{KaiTi}{\setCJKfamilyfont{kai}{KaiTi}\PackageWarning{main}{STXingkai unavailable; using KaiTi}}{%
+    \setCJKfamilyfont{kai}{FandolKai-Regular}%
+    \PackageWarning{main}{STXingkai and KaiTi unavailable; using FandolKai-Regular}%
+  }%
+}
+\providecommand{\songti}{\CJKfamily{zhsong}}
+\providecommand{\heiti}{\CJKfamily{zhhei}}
+\newcommand{\xingkai}{\CJKfamily{kai}}
+\setCJKfamilyfont{coverhei}[AutoFakeBold=3]{SimHei}
+\setCJKfamilyfont{fangsonggb}[Path=fonts/]{FangSong_GB2312.ttf}
+\newcommand{\fangsonggb}{\CJKfamily{fangsonggb}}
+\newfontfamily\tnr{Times New Roman}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setstretch{1}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\songti\fontsize{12bp}{18bp}\selectfont 北京航空航天大学自动化科学与电气工程学院}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyhead[C]{\songti\fontsize{12bp}{18bp}\selectfont 北京航空航天大学自动化科学与电气工程学院}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}}
+
+% ctex 自带标题机制，避免与 titlesec 同时改写标题格式。
+\ctexset{
+  section={format=\heiti\fontsize{15bp}{22bp}\selectfont,name={},number=\thesection.,beforeskip=1.1em,afterskip=0.5em,indent=0pt},
+  subsection={format=\songti\bfseries\fontsize{14bp}{21bp}\selectfont,name={},number=\thesubsection,beforeskip=0em,afterskip=0.5em,indent=1em},
+  subsubsection={format=\songti\bfseries\fontsize{12bp}{18bp}\selectfont,name={},number=\thesubsubsection,beforeskip=0.6em,afterskip=0.25em,indent=0pt}
+}
+\setcounter{secnumdepth}{3}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\counterwithin{equation}{section}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\captionsetup{font=small,labelfont=bf,justification=centering}
+\renewcommand{\bibsection}{\section{主要参考文献}}
+\setlength{\bibsep}{0pt}
+\renewcommand{\bibfont}{\songti\fontsize{12bp}{14.4bp}\selectfont\raggedright}
+\newcommand{\第二导师行}{\ifdefempty{\SecondSupervisor}{}{ &\SecondSupervisor\quad\SecondSupervisorTitle\\}}
+\bibliographystyle{def/GBT7714-2015-NoWarning}
+
+\begin{document}
+\pagenumbering{gobble}
+\thispagestyle{empty}
+
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\CJKfamily{coverhei}\bfseries\fontsize{12bp}{18bp}\selectfont
+\begin{tabular}{@{}l@{}l@{}}
+	\makebox[5em][s]{中图分类号}：&\Classification\\
+	\makebox[5em][s]{学号}：&\StudentNumber\\
+\end{tabular}
+\end{minipage}
+\vspace{25mm}
+
+\includegraphics[width=0.55\textwidth]{pic/emblem.png}\par
+{\xingkai\fontsize{42pt}{50pt}\selectfont\ifreview\ifprofessional 专业硕士学位文献综述 \else \ziju{0.3}硕士文献综述\fi\else\ifprofessional 专业硕士学位开题报告\else 硕士开题报告\fi\fi\par}
+\vspace{20mm}
+
+\begin{minipage}[c][50mm][c]{\textwidth}
+\centering
+{\setstretch{1}\songti\bfseries\fontsize{32bp}{42bp}\selectfont
+\parbox{\linewidth}{\centering\ReportTitle\par}}
+\end{minipage}
+
+\begin{minipage}{100mm}
+\setstretch{1}
+\heiti\fontsize{14bp}{22bp}\selectfont
+\renewcommand{\arraystretch}{1.45}
+\vspace{3\baselineskip}
+\begin{tabular}{@{}>{\hspace{1em}\ziju{0.15}}p{6em}p{\dimexpr\linewidth-4.5em-2\tabcolsep\relax}@{}}
+	作者姓名&\AuthorName\\
+	学科专业&\MajorName\\
+	指导教师&\SupervisorName\quad\SupervisorTitle\\
+	\第二导师行
+	培养院系&自动化科学与电气工程学院\\
+\end{tabular}
+\end{minipage}
+\end{center}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\ifreview
+\input{chap/zongshu/abs}
+\newpage
+\input{chap/zongshu/ch2}
+\input{chap/zongshu/ch3}
+\input{chap/zongshu/ch4}
+\bibliography{ref/zongshu/reference}
+\else
+\input{chap/kaiti/ch1}
+\input{chap/kaiti/ch2}
+\input{chap/kaiti/ch3}
+\input{chap/kaiti/ch4}
+\bibliography{ref/kaiti/reference}
+\fi
+
+\end{document}
+
