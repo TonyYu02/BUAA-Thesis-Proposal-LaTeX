@@ -64,3 +64,8 @@
         硕士开题报告.pdf
         硕士文献综述.pdf
 ```
+
+## 参考链接
+[自动化科学与电气工程学院研究生学位论文开题报告管理办法](https://dept3.buaa.edu.cn/info/1068/4034.htm)
+[关于开展自动化学院2024级硕士研究生学位论文开题工作的通知](https://dept3.buaa.edu.cn/info/1065/7323.htm)
+[北京航空航天大学研究生学位论文撰写规范](https://graduate.buaa.edu.cn/info/1275/10411.htm)
