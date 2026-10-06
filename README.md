@@ -1,5 +1,5 @@
 # BUAA-Thesis-Proposal-LaTeX
-## 文献综述&开题报告二合一LaTeX模板 V1.1
+## 文献综述&开题报告二合一LaTeX模板 V1.2
 
 目前是按2025年的Word模板文件复刻。
 
@@ -42,7 +42,8 @@
 │      FangSong_GB2312.ttf #仿宋_GB2312字体
 │
 ├─pic
-│  │  emblem.png #校徽
+│  │  buaa-mark.jpg #校徽
+│  │  logo-buaa.eps #校名
 │  │
 │  ├─kaiti #开题报告文件夹
 │  │      flowchart.png #示例用流程图
